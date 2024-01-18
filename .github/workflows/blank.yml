@@ -1,0 +1,43 @@
+// ProductList.js
+
+import React from 'react';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
+
+const ProductList = ({ products }) => {
+  const renderItem = ({ item }) => (
+    <View style={styles.productItem}>
+      <Text>{item.name}</Text>
+      <Text>{`Price: $${item.price}`}</Text>
+    </View>
+  );
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.header}>Product List</Text>
+      <FlatList
+        data={products}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id.toString()}
+      />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 16,
+  },
+  productItem: {
+    padding: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+});
+
+export default ProductList;
